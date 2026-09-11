@@ -8,8 +8,7 @@ class YaduApp extends StatelessWidget {
   const YaduApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext con
       debugShowCheckedModeBanner: false,
       title: 'Yadu 1C PS',
       theme: ThemeData(
