@@ -1,4 +1,4 @@
-name: Build Yadu 1C
+name: Build Yadu1c Ps
 
 on:
   workflow_dispatch:
