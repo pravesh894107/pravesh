@@ -1,7 +1,10 @@
-name: Build APK
+name: Build Yadu 1C
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -17,7 +20,7 @@ jobs:
           channel: stable
 
       - name: Create Android project
-        run: flutter create .
+        run: flutter create --platforms=android .
 
       - name: Get dependencies
         run: flutter pub get
@@ -25,8 +28,17 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Build Play Store AAB
+        run: flutter build appbundle --release
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Yadu1C-APK
+          name: Yadu-1C-APK
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: Yadu-1C-PlayStore-AAB
+          path: build/app/outputs/bundle/relese/app-rwlese.aab
