@@ -1,10 +1,10 @@
 name: Build Yadu1C APK
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,17 +22,15 @@ jobs:
 
       - name: Create Flutter Android project
         run: |
-          if [ ! -f pubspec.yaml ]; then
-            flutter create --platforms=android .
-          elif [ ! -d android ]; then
-            flutter create --platforms=android .
-          fi
+          flutter create .
 
       - name: Get Packages
-        run: flutter pub get
+        run: |
+          flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
